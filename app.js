@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const UserModel = require('./models/users')
 
 //url para conectarse a la base de datos
-const url = 'mongodb+srv://bandito:trench@cluster0.n3kwr.mongodb.net/cliqueDB?retryWrites=true&w=majority'
+const url = 'mongodb://localhost/api'
 //mongoose funciona conn compromesas si conectamos pero no damos una respuesta tendremos error, por eso then y catch para errores
 mongoose.connect(url, {
 })
@@ -28,7 +28,8 @@ const escribir = async ()=>{
     const user = new UserModel({
         nombre:'Mauricio',
         edad:14,
-        username:'mauu'
+        username:'mauu',
+        password:'mauu'
     })
     //save para guardar el registro y res solo para escribir el registro en la consola
     const res = await user.save()
@@ -52,7 +53,7 @@ const eliminar = async (id)=>{
 //mando a llamar la funcion que muestra todos los datos
 //mostrar()
 //escribir()
-//actualizar('62bd2096e33c793251905123')
-//eliminar('62bd2096e33c793251905123')
+//actualizar('idxd')
+//eliminar('idxd')
 
 
