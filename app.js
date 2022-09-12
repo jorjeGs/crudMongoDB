@@ -2,8 +2,12 @@
 //instale mongoose y nodemon para cada que haga cambios no cerrar el server con el script en json "start"
 //primero requerimos el paquete despues de haberlo instalado en el json
 const mongoose = require('mongoose')
+const express = require('express')
+const app = express()
+const port = 9000
 //modelo para la coleccion users
 const UserModel = require('./models/users')
+const userRoutes = require('./routes/user')
 
 //url para conectarse a la base de datos
 const url = 'mongodb://localhost/api'
@@ -13,6 +17,18 @@ mongoose.connect(url, {
 .then(()=> console.log('Conectado a base de datos ouyeah'))
 .catch( (e)=> console.log('Error detectado: ' + e))
 
+app.listen(port, ()=>{
+    console.log("Servidor en linea en puerto ", port)
+})
+
+//middleware
+app.use(express.json())
+app.use('/api', userRoutes)
+
+//routes
+app.get('/',(req,res)=>{
+    res.send('API REST TEST')    
+})
 
 //funcion para mostrar datos
 const mostrar = async ()=>{
